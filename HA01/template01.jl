@@ -26,7 +26,7 @@ string_p2 = "World!"
 #2.2 Concatenate these two variables with a space in between
 # Hint: Take a look at the official Julia doc if you do not know how to do it
 # https://docs.julialang.org/en/v1/manual/strings/#man-concatenation
-string_p1*" "*string_p2
+merge_string = string_p1*" "*string_p2
 #2.3 Use string interpolation to create a sentence
 # using at least three of the variables created in task 1!
 # Hint: Take a look at https://docs.julialang.org/en/v1/manual/strings/#string-interpolation
@@ -42,21 +42,23 @@ mymatrix = zeros(Float64, 100,100)
 #3.2 Use the "fill!" function to replace the values of "mymatrix" with the value 1.
 fill!(mymatrix, 1)
 #3.3 Sum up all values of "mymatrix" and print the result to the REPL.
-sum = 0
-for (i,v) in enumerate(mymatrix)
-    sum += v
-end
-println(sum)
+summe = sum(mymatrix)
+# summe = 0
+# for (i,v) in enumerate(mymatrix)
+#     summe += v
+# end
+println(summe)
 #3.4 Select only the last row of "mymatrix" and print it to the REPL.
 # Hint: Indexing in Julia is row first, column second. You can use the colon ":" operator
 # to select every position in a dimension of an array.
 # If you have troube with indexing of arrays, take a look at https://juliabook.chkwon.net/book/basics#cid15
-println(mymatrix[100,:])
+
+println(mymatrix[end,:])
 #3.4 Create a vector of the length 100 which contains the numbers 2 to 200 in steps of 2.
 myvector = collect(2:2:200)
 #3.5 Replace the last row of "mymatrix" with the vector created in task 3.4 and print "mymatrix"
 # to the REPL
-mymatrix[100,:] = myvector
+mymatrix[end,:] = myvector
 println(mymatrix)
 #3.6 Create another vector of the length 100 containing random numbers and use
 # the function "hcat" to concatenate this vector to "mymatrix".
@@ -65,13 +67,14 @@ mergedarray = hcat(mymatrix, similar(myvector))
 #3.7 Print the size of "mergedarray" to the REPL.
 println(size(mergedarray))
 #3.8 Sum over the first dimension of "mergedarray" and print the result to the REPL.
-for i in 1:size(mergedarray)[2]
-    for j in 1:size(mergedarray)[1]
-        mergedarray[1,i] += mergedarray[j,i]
-    end
-end 
-mergedarray = mergedarray[1,:]
-println(mergedarray)
+println("Sum over the first dimension:" ,sum(mergedarray,dims = 1))
+# for i in 1:size(mergedarray)[2]
+#     for j in 1:size(mergedarray)[1]
+#         mergedarray[1,i] += mergedarray[j,i]
+#     end
+# end 
+# mergedarray = mergedarray[1,:]
+# println(mergedarray)
 ### Task 4 ###
 # 4.1 Create a dictionary which takes the type Int64 as keys and Float64 as values.
 # Name it "mydict".
